@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>竞彩网 · 可信信息站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #f5fcf9 0%, #e8f3ef 100%);
+      color: #1b3a34;
+      line-height: 1.6;
+      padding: 1.2rem;
+      min-height: 100vh;
+    }
+
+    .page-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* 网格卡片——贯穿全页 */
+    .grid-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(2px);
+      border-radius: 2.2rem;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 10px 20px -8px rgba(30, 80, 70, 0.08), 0 0 0 1px rgba(60, 140, 120, 0.12);
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+
+    .grid-card:hover {
+      box-shadow: 0 18px 30px -10px rgba(30, 100, 85, 0.14), 0 0 0 1px rgba(50, 160, 130, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* 开篇静场 */
+    .opening-line {
+      font-size: 1.6rem;
+      font-weight: 380;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      margin: 1.6rem 0 2.2rem 0;
+      padding: 0.2rem 0;
+      border-left: 4px solid #2f9e86;
+      padding-left: 1.2rem;
+      color: #1c4d42;
+    }
+
+    .opening-line span {
+      background: linear-gradient(120deg, #e0f3ed 0%, #cdeadf 80%);
+      padding: 0.1rem 0.5rem;
+      border-radius: 20px;
+      font-weight: 420;
+    }
+
+    /* 承接段落 */
+    .intro-block {
+      margin: 2rem 0 2.4rem;
+    }
+
+    .intro-block p {
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .intro-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 特点列表：卡片式网格 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2.2rem 0 2.8rem;
+    }
+
+    .feature-item {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      border-radius: 1.8rem;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 4px 12px rgba(30, 80, 65, 0.04);
+      border: 1px solid rgba(70, 160, 135, 0.18);
+      transition: all 0.2s;
+    }
+
+    .feature-item:hover {
+      background: white;
+      border-color: #2f9e86;
+      box-shadow: 0 8px 18px -6px rgba(30, 120, 95, 0.12);
+    }
+
+    .feature-icon {
+      display: inline-block;
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      line-height: 1;
+    }
+
+    .feature-title {
+      font-weight: 560;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: #12463a;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-desc {
+      font-size: 0.92rem;
+      color: #2d5c51;
+    }
+
+    /* 温和的中间句子区 */
+    .gentle-remark {
+      background: #e1f0ea;
+      padding: 1.6rem 1.8rem;
+      border-radius: 2.4rem;
+      margin: 2.4rem 0;
+      font-size: 1.02rem;
+      color: #1a4239;
+      border: 1px solid #b7d9cf;
+    }
+
+    .gentle-remark a {
+      color: #116f5a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #2f9e86;
+    }
+
+    .gentle-remark a:hover {
+      border-bottom-style: solid;
+      background: #d3efe5;
+    }
+
+    /* FAQ 摘要 —— 柔和折叠感 */
+    .faq-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin: 2rem 0;
+    }
+
+    .faq-q {
+      background: #ffffffb3;
+      backdrop-filter: blur(2px);
+      border-radius: 1.6rem;
+      padding: 0.8rem 1.4rem;
+      border-left: 5px solid #429883;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      padding: 0 1.4rem 0.8rem 1.4rem;
+      font-size: 0.95rem;
+      color: #2b564a;
+    }
+
+    /* 温和结尾 */
+    .closing-grace {
+      margin: 3rem 0 1.2rem;
+      padding: 1.6rem 0 0.6rem;
+      border-top: 2px solid #b3d4c9;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #215247;
+      font-weight: 380;
+    }
+
+    .closing-grace small {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body {
+        padding: 0.8rem;
+      }
+
+      .grid-card {
+        padding: 1.4rem 1rem;
+        border-radius: 1.8rem;
+      }
+
+      .opening-line {
+        font-size: 1.3rem;
+        padding-left: 0.8rem;
+        margin: 1rem 0 1.4rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+
+      .feature-item {
+        padding: 1.2rem 1rem;
+        border-radius: 1.4rem;
+      }
+
+      .gentle-remark {
+        padding: 1.2rem 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      .faq-q {
+        font-size: 0.95rem;
+        padding: 0.6rem 1rem;
+      }
+
+      .faq-a {
+        padding: 0 1rem 0.6rem;
+      }
+    }
+
+    @media (min-width: 601px) and (max-width: 900px) {
+      .feature-grid {
+        gap: 1rem;
+      }
+    }
+
+    /* 极简按钮——仅用于视觉点缀, 不承载链接 */
+    .pill-tag {
+      display: inline-block;
+      background: #d4ede4;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      color: #146653;
+      margin-right: 0.4rem;
+    }
+
+    /* 链接通用 */
+    a {
+      color: #0a6b58;
+      transition: 0.15s;
+    }
+    a:active {
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- 开篇短句 -->
+  <div class="opening-line">
+    <span>竞彩信息，</span>一份可翻阅的参考。
+  </div>
+
+  <!-- 承接段落（站点介绍与可信说明） -->
+  <div class="grid-card intro-block">
+    <p>在体育与数字交汇的角落，<a href="https://mobile-portal-sporttery.com" style="font-weight:500; text-decoration:none; border-bottom:1px solid #2f9e86;">竞彩网</a>以简洁的界面聚合赛事数据与基本资讯，不渲染情绪，不夸大判断。它更像一处安静的观测点：你可以查阅赛前指数、历史趋势或队伍近况，所有信息均标注来源并保持更新节奏。</p>
+    <p>站点本身不接入即时交易，也不提供任何「必胜」方案——它的角色是工具，而非引导者。无论你是刚接触竞猜的新手，还是希望快速核对数据的爱好者，这里的内容结构都足够清晰，减少冗余干扰。</p>
+  </div>
+
+  <!-- 特点列表（卡片网格） -->
+  <div class="feature-grid">
+    <div class="feature-item">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">数据面板清晰</div>
+      <div class="feature-desc">胜负、让球、大小分等核心指数一屏展示，减少跳转次数。</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🔄</div>
+      <div class="feature-title">定时刷新</div>
+      <div class="feature-desc">页面按固定间隔同步官方数据，不依赖手动刷新。</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">📱</div>
+      <div class="feature-title">移动适配</div>
+      <div class="feature-desc">针对手机屏幕优化卡片与字体，单手操作友好。</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">⚖️</div>
+      <div class="feature-title">无倾向叙述</div>
+      <div class="feature-desc">仅陈列事实性信息，不附加主观预测或诱导话术。</div>
+    </div>
+  </div>
+
+  <!-- 温和嵌入链接的句子（非硬广） -->
+  <div class="gentle-remark">
+    <span class="pill-tag">⚡ 日常参考</span> 很多用户习惯在赛前一小时打开 
+    <a href="https://mobile-portal-sporttery.com">竞彩网</a>，快速确认让球变化与赔率波动，辅助自己的判断，而非直接跟随任何推荐。
+  </div>
+
+  <!-- FAQ 摘要（三段） -->
+  <div style="margin: 2rem 0;">
+    <h3 style="font-weight: 450; font-size:1.2rem; margin-bottom:1rem; color:#1e594b;">常见疑问 · 摘要</h3>
+    <div class="faq-mini">
+      <div class="faq-q">❓ 数据来源是哪？</div>
+      <div class="faq-a">所有比赛数据均整合自合规的体育数据供应商，并保留更新记录。页面标注的参考时间即最后同步时刻。</div>
+
+      <div class="faq-q">❓ 需要注册或登录吗？</div>
+      <div class="faq-a">浏览基础信息页不需要注册。部分深度统计功能可能需免费账号，但站点不强制收集私人信息。</div>
+
+      <div class="faq-q">❓ 信息更新频率如何？</div>
+      <div class="faq-a">核心指数每 2–5 分钟自动同步一次；赛前 1 小时内更新频率会提高。实际以页面显示为准。</div>
+    </div>
+  </div>
+
+  <!-- 温和结尾 -->
+  <div class="closing-grace">
+    保持理性，让数据成为安静的参考。
+    <small>—— 不盲从，不轻信，仅作有益的核对。</small>
+  </div>
+
+</div>
+</body>
+</html>
